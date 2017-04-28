@@ -115,7 +115,7 @@
                     <dockerDirectory>src/main/docker</dockerDirectory>
                     <serverId>docker-hub</serverId>
                     <imageTags>
-                        <imageTag>1.0.1</imageTag>
+                        <imageTag>1.0.2</imageTag>
                     </imageTags>
                     <resources>
                         <resource>

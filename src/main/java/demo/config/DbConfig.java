@@ -15,20 +15,24 @@ public class DbConfig {
 	private String username;
 	@Value("${jdbc.pass}")
 	private String pass;
+	@Value("${jdbc.domain:infobip.local}")
+	private String domain;
+	@Value("${jdbc.useNTLMv2:true}")
+	private boolean useNTLMv2;
 
-    @Bean
-    public HikariDataSource hikariDataSource(){
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(jdbcUrl);
-        config.setUsername(username);
-        config.setPassword(pass);
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        config.setConnectionTestQuery("SELECT 1");
+	@Bean
+	public HikariDataSource hikariDataSource() {
+		HikariConfig config = new HikariConfig();
+		config.setJdbcUrl(jdbcUrl + ";domain=" + domain + ";useNTLMv2=" + useNTLMv2);
+		config.setUsername(username);
+		config.setPassword(pass);
+		config.addDataSourceProperty("cachePrepStmts", "true");
+		config.addDataSourceProperty("prepStmtCacheSize", "250");
+		config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+		config.setConnectionTestQuery("SELECT 1");
 
-        HikariDataSource ds = new HikariDataSource(config);
-        return ds;
-    }
+		HikariDataSource ds = new HikariDataSource(config);
+		return ds;
+	}
 
 }

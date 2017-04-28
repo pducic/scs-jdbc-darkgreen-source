@@ -44,3 +44,6 @@ spring:
       bindings:
         output:
           destination: xformed
+
+
+
